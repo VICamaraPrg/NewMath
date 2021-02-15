@@ -7,4 +7,4 @@ Of course minor versions will be released and the objective are the correction o
   
   <h4>You will find all info about releases, methods explaination and contributors in the wiki!</h4>
   <h2>¿How to use NewMath?</h2>
-  The easiest way to do it is just download the src/newmath or copy the content of file inside of it (NewMath.java), as you wish. Then import it on your project as a java class. That's it, you're ready to use it! Call a method of the class by typing "NewMath." And then all methods available will appear!
+  The easiest way to do it is just download the 'NewMath.java' located at releases sidebar. Then import it on your project as a java class. That's it, you're ready to use it! Call a method of the class by typing 'NewMath.' And then all methods available will appear!
