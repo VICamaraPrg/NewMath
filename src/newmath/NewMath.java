@@ -1,11 +1,12 @@
 package newmath;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
  * @author VIcamaraPRG
- * @version 1.0
+ * @version 1.0.4
  * @since 1.0
  */
 public class NewMath {
@@ -13,7 +14,8 @@ public class NewMath {
     /**
      * The class cannot be instantiated.
      */
-    private NewMath() {}
+    private NewMath() {
+    }
 
     /**
      * Returns the Fibonacci sequence from 1 to {@code limit}.
@@ -287,12 +289,16 @@ public class NewMath {
             factors.add(1);
             return factors;
         } else {
-            for (int i = 1; i <= b / 2; i++) {
+            for (int i = 1; i <= Math.sqrt(b); i++) {
                 if (b % i == 0) {
                     factors.add(i);
+                    if (i != b / i) {
+                        factors.add(b / i);
+                    }
                 }
             }
         }
+        Collections.sort(factors);
         return factors;
     }
 
@@ -311,15 +317,19 @@ public class NewMath {
      * @since 1.0
      */
     public static boolean isAbundantNumber(int n) {
-        if (n < 0)
+        if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
-        
+        }
+
         ArrayList<Integer> vector = new ArrayList();
         vector = NewMath.getFactors(n);
+        vector.remove(vector.size() - 1);
+        
         int total = 0;
 
-        for (int i = 0; i < vector.size(); i++)
+        for (int i = 0; i < vector.size(); i++) {
             total += vector.get(i);
+        }
 
         return (total > n);
     }
@@ -339,23 +349,26 @@ public class NewMath {
      * @since 1.0
      */
     public static boolean isDeficientNumber(int n) {
-        if (n < 0)
+        if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
-        
+        }
+
         ArrayList<Integer> vector = new ArrayList();
         vector = NewMath.getFactors(n);
+        vector.remove(vector.size() - 1);
         int total = 0;
 
-        for (int i = 0; i < vector.size(); i++)
+        for (int i = 0; i < vector.size(); i++) {
             total += vector.get(i);
-        
+        }
+
         return (total < n);
     }
-    
+
     /**
      * Returns a {@code boolean} based if {@code n} is a perfect number.
-     * <br>In order to be perfect, the sum of divisors (excluding {@code n})
-     * of {@code n} must be equal to {@code n} itself.
+     * <br>In order to be perfect, the sum of divisors (excluding {@code n}) of
+     * {@code n} must be equal to {@code n} itself.
      * <br>If {@code n} is negative, an {@link ArithmeticException} will be
      * thrown.
      *
@@ -367,15 +380,18 @@ public class NewMath {
      * @since 1.0
      */
     public static boolean isPerfectNumber(int n) {
-        if (n < 0)
+        if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
-        
+        }
+
         ArrayList<Integer> vector = new ArrayList();
         vector = NewMath.getFactors(n);
+        vector.remove(vector.size() - 1);
         int total = 0;
 
-        for (int i = 0; i < vector.size(); i++)
+        for (int i = 0; i < vector.size(); i++) {
             total += vector.get(i);
+        }
 
         return (total == n);
     }
