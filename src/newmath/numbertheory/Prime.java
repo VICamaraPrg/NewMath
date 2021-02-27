@@ -55,10 +55,10 @@ public class Prime {
         int next = n;
         if (n <= 1)
             return 2;
-        else if (isPrimeNumber(next))
-            next += 2;
         else if (n == 2)
             return 3;
+        else if (isPrimeNumber(next))
+            next += 2;
         else if (n % 2 == 0)
             next++;
 
