@@ -4,7 +4,7 @@ import newmath.numbertheory.Utils;
 
 /**
  * @author VICamaraPRG
- * @version 1.0
+ * @version 1.0.6
  * @since 1.0
  */
 public class Fraction {
@@ -30,7 +30,9 @@ public class Fraction {
         }
 
         int numerator = (int) Math.round(number);
-        int gcd = Utils.greatestCD(numerator, denominator);
+
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -44,6 +46,7 @@ public class Fraction {
 
         this.denominator = denominator;
         this.numerator = numerator;
+        this.value = ((double) this.numerator / this.denominator);
     }
 
     /**
@@ -60,9 +63,21 @@ public class Fraction {
     }
 
     /**
+     * Returns a floating point number expressing the fraction value.
+     *
+     * @return {@code double} value as fraction value.
+     * @since 1.0.6
+     */
+    public double getValue() {
+        this.value = ((double) this.numerator / this.denominator);
+        return this.value;
+    }
+
+    /**
      * Returns the numerator part of a fraction.
      *
      * @return {@code int} value as the numerator.
+     * @since 1.0
      */
     public int getNumerator() {
         return numerator;
@@ -72,6 +87,7 @@ public class Fraction {
      * Returns the denominator part of a fraction.
      *
      * @return {@code int} value as the denominator.
+     * @since 1.0
      */
     public int getDenominator() {
         return denominator;
@@ -81,9 +97,30 @@ public class Fraction {
      * Returns a readable fraction as String, {@code example: 4/3}.
      *
      * @return {@code String} as the fraction returned.
+     * @since 1.0
      */
     @Override
     public String toString() {
         return (String.valueOf(numerator) + "/" + String.valueOf(denominator));
+    }
+
+    /**
+     * Changes the numerator of the fraction to specified {@code int} value.
+     *
+     * @param newNumerator
+     * @since 1.0.6
+     */
+    public void setNumerator(int newNumerator) {
+        this.numerator = newNumerator;
+    }
+
+    /**
+     * Changes the denominator of the fraction to specified {@code int} value.
+     *
+     * @param newDenominator
+     * @since 1.0.6
+     */
+    public void setDenominator(int newDenominator) {
+        this.denominator = newDenominator;
     }
 }
