@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author VIcamaraPRG
- * @version 1.0
+ * @version 1.0.1
  * @since 1.0
  */
 public class Sequence {
@@ -31,7 +31,7 @@ public class Sequence {
      * @throws StackOverflowError ArithmeticException
      * @since 1.0
      */
-    public static ArrayList<Long> fibonacciSequence(long limit) {
+    public static ArrayList<Long> fibonacci(long limit) {
         if (limit > 91)
             throw new StackOverflowError("""
                     The Fibonacci number
@@ -43,7 +43,7 @@ public class Sequence {
                     + "The limit must be a positive number.");
 
 
-        ArrayList<Long> fibonacciSequence = new ArrayList();
+        ArrayList<Long> sequence = new ArrayList();
         long fibonacciNumber = 1;
         long previousNumber = 0;
         long sum;
@@ -53,11 +53,11 @@ public class Sequence {
             previousNumber = fibonacciNumber;
             fibonacciNumber = sum;
             if (fibonacciNumber < 0)
-                return fibonacciSequence;
+                return sequence;
             else
-                fibonacciSequence.add(fibonacciNumber);
+                sequence.add(fibonacciNumber);
         }
 
-        return fibonacciSequence;
+        return sequence;
     }
 }

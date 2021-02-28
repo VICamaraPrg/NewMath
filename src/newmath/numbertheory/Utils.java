@@ -1,10 +1,11 @@
 package newmath.numbertheory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author VIcamaraPRG
- * @version 1.0
+ * @version 1.0.1
  * @since 1.0
  */
 public class Utils {
@@ -13,6 +14,135 @@ public class Utils {
      * The class cannot be instantiated.
      */
     private Utils() {
+    }
+
+    /**
+     * Returns the double factorial of {@code a}.
+     * <br>Don't misunderstand the double factorial as {@code (n!)!} Since that
+     * means do the factorial twice. Double factorial takes the parity of n as
+     * important term (odd or even).
+     * <br>For even numbers:
+     * {@code 10!! = 10(10-2)(10-4)... = 10*8*6*4*2 = 3840}
+     * <br>For odd numbers:
+     * {@code 11!! = 11(11-2)(11-4)... = 11*9*7*5*3*1 = 10395}
+     * <br><br>If {@code a} is negative, an {@link ArithmeticException} will be
+     * thrown, though a negative double factorial is possible, will probably be
+     * implemented over time.
+     *
+     * @param a {@code long} value, must be positive.
+     * @return the double factorial of {@code a}
+     * @throws ArithmeticException
+     * @since 1.0
+     */
+    public static long doubleFactorial(long a) {
+        if (a < 0)
+            throw new ArithmeticException("Negative numbers are not allowed.");
+        else if (a == 0)
+            return 1;
+
+        long total = 1;
+        long limit = 1;
+
+        if ((a % 2) == 0)
+            limit = 0;
+
+        while (a != limit) {
+            total *= a;
+            a -= 2;
+        }
+
+        return total;
+    }
+
+    /**
+     * Returns an {@code ArrayList<Long>} with the list of double factorial
+     * of {@code a}
+     *
+     * @param a the number to evaluate the double factorial.
+     * @return a list containing the full sequence of double factorial.
+     * @since 1.0.1
+     */
+    public static ArrayList<Long> doubleFactorialList(int a) {
+        if (a < 0)
+            throw new ArithmeticException("Negative numbers are not allowed.");
+
+        ArrayList<Long> dFactorialList = new ArrayList();
+        dFactorialList.add(1L);
+        int limit = 1;
+
+        if (a % 2 == 0)
+            limit = 0;
+
+        while (a != limit) {
+            dFactorialList.add(doubleFactorial(a));
+            a -= 2;
+        }
+        Collections.sort(dFactorialList);
+
+        return dFactorialList;
+    }
+
+    /**
+     * Returns the positive factorial of {@code a}
+     * <br>The method will overFlow {@link Long#MAX_VALUE} if {@code a} is avobe
+     * 20.
+     * <br><br>If {@code a} is avobe 20, an {@link StackOverflowError} Exception
+     * will be thrown.
+     * <br> As well as if the limit is negative, an {@link ArithmeticException}
+     * will be thrown.
+     *
+     * @param a the factorial to get, must be positive.
+     * @return the positive factorial of {@code a}
+     * @throws ArithmeticException, StackOverflowError
+     * @since 1.0
+     */
+    public static long factorial(long a) {
+        if (a < 0)
+            throw new ArithmeticException("Negative numbers are not allowed.");
+        else if (a > 20)
+            throw new StackOverflowError("""
+                    The input number will overflow
+                    """ + Long.MAX_VALUE);
+        else if (a == 0)
+            return 1;
+
+        long total = 1;
+        while (a != 1) {
+            total *= a;
+            a--;
+        }
+
+        return total;
+    }
+
+    /**
+     * Returns the positive factorial sequence of {@code a}
+     * <br>The method will overFlow {@link Long#MAX_VALUE} if {@code a} is avobe
+     * 20.
+     * <br><br>If {@code a} is above 20, an {@link StackOverflowError} Exception
+     * will be thrown.
+     * <br> As well as if the limit is negative, an {@link ArithmeticException}
+     * will be thrown.
+     *
+     * @param a the factorial sequence to get, must be positive.
+     * @return the positive factorial sequence from 0 to {@code a}
+     * @throws ArithmeticException
+     * @since 1.0
+     */
+    public static ArrayList<Long> factorialList(long a) {
+        if (a < 0)
+            throw new ArithmeticException("Negative numbers are not allowed.");
+        else if (a > 20)
+            throw new StackOverflowError("""
+                    The input number will overflow
+                    """ + Long.MAX_VALUE);
+
+        ArrayList<Long> factorialSequence = new ArrayList();
+
+        for (int i = 1; i <= a; i++)
+            factorialSequence.add(factorial(i));
+
+        return factorialSequence;
     }
 
     /**
@@ -105,104 +235,4 @@ public class Utils {
         return (int) (Math.abs(a * b) / greatestCD(a, b));
     }
 
-    /**
-     * Returns the positive factorial sequence of {@code a}
-     * <br>The method will overFlow {@link Long#MAX_VALUE} if {@code a} is avobe
-     * 20.
-     * <br><br>If {@code a} is avobe 20, an {@link StackOverflowError} Exception
-     * will be thrown.
-     * <br> As well as if the limit is negative, an {@link ArithmeticException}
-     * will be thrown.
-     *
-     * @param a the factorial sequence to get, must be positive.
-     * @return the positive factorial sequence from 0 to {@code a}
-     * @throws ArithmeticException
-     * @since 1.0
-     */
-    public static ArrayList<Long> factorialList(long a) {
-        if (a < 0)
-            throw new ArithmeticException("Negative numbers are not allowed.");
-        else if (a > 20)
-            throw new StackOverflowError("""
-                    The input number will overflow
-                    """ + Long.MAX_VALUE);
-
-        ArrayList<Long> factorialSequence = new ArrayList();
-
-        for (int i = 1; i <= a; i++)
-            factorialSequence.add(factorial(i));
-
-        return factorialSequence;
-    }
-
-    /**
-     * Returns the positive factorial of {@code a}
-     * <br>The method will overFlow {@link Long#MAX_VALUE} if {@code a} is avobe
-     * 20.
-     * <br><br>If {@code a} is avobe 20, an {@link StackOverflowError} Exception
-     * will be thrown.
-     * <br> As well as if the limit is negative, an {@link ArithmeticException}
-     * will be thrown.
-     *
-     * @param a the factorial to get, must be positive.
-     * @return the positive factorial of {@code a}
-     * @throws ArithmeticException, StackOverflowError
-     * @since 1.0
-     */
-    public static long factorial(long a) {
-        if (a < 0)
-            throw new ArithmeticException("Negative numbers are not allowed.");
-        else if (a > 20)
-            throw new StackOverflowError("""
-                    The input number will overflow
-                    """ + Long.MAX_VALUE);
-        else if (a == 0)
-            return 1;
-
-        long total = 1;
-        while (a != 1) {
-            total *= a;
-            a--;
-        }
-
-        return total;
-    }
-
-    /**
-     * Returns the double factorial of {@code a}.
-     * <br>Don't misunderstand the double factorial as {@code (n!)!} Since that
-     * means do the factorial twice. Double factorial takes the parity of n as
-     * important term (odd or even).
-     * <br>For even numbers:
-     * {@code 10!! = 10(10-2)(10-4)... = 10*8*6*4*2 = 3840}
-     * <br>For odd numbers:
-     * {@code 11!! = 11(11-2)(11-4)... = 11*9*7*5*3*1 = 10395}
-     * <br><br>If {@code a} is negative, an {@link ArithmeticException} will be
-     * thrown, though a negative double factorial is possible, will probably be
-     * implemented over time.
-     *
-     * @param a {@code long} value, must be positive.
-     * @return the double factorial of {@code a}
-     * @throws ArithmeticException
-     * @since 1.0
-     */
-    public static long doubleFactorial(long a) {
-        if (a < 0)
-            throw new ArithmeticException("Negative numbers are not allowed.");
-        else if (a == 0)
-            return 1;
-
-        long total = 1;
-        long limit = 1;
-
-        if ((a % 2) == 0)
-            limit = 0;
-
-        while (a != limit) {
-            total *= a;
-            a -= 2;
-        }
-
-        return total;
-    }
 }

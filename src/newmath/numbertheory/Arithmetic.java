@@ -20,7 +20,7 @@ public class Arithmetic {
      * @throws ArithmeticException
      * @since 1.0
      */
-    public static boolean isAbundantNumber(int n) {
+    public static boolean isAbundant(int n) {
         if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
         }
@@ -51,7 +51,7 @@ public class Arithmetic {
      * @throws ArithmeticException
      * @since 1.0
      */
-    public static boolean isDeficientNumber(int n) {
+    public static boolean isDeficient(int n) {
         if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
         }
@@ -81,7 +81,7 @@ public class Arithmetic {
      * @throws ArithmeticException
      * @since 1.0
      */
-    public static boolean isPerfectNumber(int n) {
+    public static boolean isPerfect(int n) {
         if (n < 0) {
             throw new ArithmeticException("Negative numbers are not allowed.");
         }

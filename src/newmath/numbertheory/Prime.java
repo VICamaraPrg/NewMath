@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author VIcamaraPRG
- * @version 1.0.2
+ * @version 1.0.3
  * @since 1.0
  */
 public class Prime {
@@ -27,7 +27,7 @@ public class Prime {
      * @throws ArithmeticException
      * @since 1.0
      */
-    public static boolean isPrimeNumber(int n) {
+    public static boolean isPrime(int n) {
         if (n < 0)
             throw new ArithmeticException("Negative numbers are not allowed.");
 
@@ -51,18 +51,18 @@ public class Prime {
      * @return The closest upper prime.
      * @since 1.0.2
      */
-    public static int getNextPrime(int n) {
+    public static int getNext(int n) {
         int next = n;
         if (n <= 1)
             return 2;
         else if (n == 2)
             return 3;
-        else if (isPrimeNumber(next))
+        else if (isPrime(next))
             next += 2;
         else if (n % 2 == 0)
             next++;
 
-        while (!isPrimeNumber(next))
+        while (!isPrime(next))
             next += 2;
 
         return next;
@@ -80,14 +80,14 @@ public class Prime {
      * @throws ArithmeticException
      * @since 1.0
      */
-    public static ArrayList<Integer> nPrimeNumbers(int limit) {
+    public static ArrayList<Integer> nPrimes(int limit) {
         if (limit < 0)
             throw new ArithmeticException("Negative numbers are not allowed.");
 
         ArrayList<Integer> primes = new ArrayList();
 
         for (int i = 0; i <= limit; i++) {
-            if (isPrimeNumber(i))
+            if (isPrime(i))
                 primes.add(i);
         }
         return primes;

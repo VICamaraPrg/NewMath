@@ -2,11 +2,10 @@ package newmath.numbertheory;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import newmath.numbertheory.Prime.*;
 
 /**
  * @author VICamaraPRG
- * @version 1.0.1
+ * @version 1.0.2
  * @since 1.0
  */
 public class Factorization {
@@ -30,11 +29,15 @@ public class Factorization {
         ArrayList<Integer> factors = new ArrayList();
         int b = a;
 
-        if (a == 0 || a == 1) {
+        if (a == 0) {
             factors.add(0);
             return factors;
-        } else if (Prime.isPrimeNumber(a)) {
+        } else if (a == 1) {
             factors.add(1);
+            return factors;
+        } else if (Prime.isPrime(a)) {
+            factors.add(1);
+            factors.add(a);
             return factors;
         } else {
             for (int i = 1; i <= Math.sqrt(b); i++) {
@@ -58,11 +61,16 @@ public class Factorization {
      * @return
      * @since 1.0.1
      */
-    public static ArrayList<Integer> primeFactors(int a) {
+    public static ArrayList<Integer> getPrimeFactors(int a) {
         if (a < 0)
             throw new ArithmeticException("Negative numbers are not allowed.");
 
         ArrayList<Integer> primes = new ArrayList();
+
+        if (a == 0 || a == 1) {
+            primes.add(0);
+            return primes;
+        }
 
         int divisor, power;
 
@@ -79,7 +87,7 @@ public class Factorization {
                 primes.add(divisor);
                 a /= divisor;
             } else
-                divisor = Prime.getNextPrime(divisor + 1);
+                divisor = Prime.getNext(divisor + 1);
         }
         if (a != 1)
             primes.add(a);
