@@ -12,4 +12,3 @@ Of course minor versions will be released and the objective are the correction o
   <h1>¿How to use NewMath?</h1>
   
   The easiest way to do it is just download the release located at releases sidebar Or just download the source code). Then import it on your project. That's it, you're ready to use it!
-  
